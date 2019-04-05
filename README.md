@@ -1,2 +1,2 @@
 # Miniature
-a simole assembler for computer architecture lesson
+a simplle assembler for computer architecture lesson
