@@ -1,0 +1,27 @@
+def creat32bit(Opcode):
+    output="                               "
+    if(Opcode(type)=="R"):
+        output[24 , 27]=Opcode
+        output[20 , 23]=(to binery rs)
+        output[16 , 19]=(to binery rt)
+        output[12 , 15]=(to binery rd)
+        output.zfill(32)
+
+    if(Opcode(type)=="I"):
+        output[24, 27] = Opcode
+        output[20, 23] = (to binery rs)
+        output[16, 19] = (to binery rt)
+        output[0, 15] = (to binery offset)
+        output.zfill(32)
+
+    if(Opcode(type)=="J"):
+        output[24, 27] = Opcode
+        output[0 , 15] = to binery(line_counter (targetAddress ))
+        output.zfill(32)
+
+
+def register_to_binery(num):
+    bin(num)[2:].zfill(4)
+    
+def offset_to_binery(address):
+    bin(address)[2:].zfill(16)
