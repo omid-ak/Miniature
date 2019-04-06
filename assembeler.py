@@ -74,7 +74,7 @@ for l in fn:
         pc += 1
         line_counter+=1
     elif 'slti' in l:
-        opcode = '0110
+        opcode = '0110'
         match  = re.search(r'.* slti .*,.*,.*',str(l))
         argsls = match.group().split()
         #TODO: conver to binarycode and calculate...
@@ -104,7 +104,7 @@ for l in fn:
     elif 'sw' in l:
         opcode = '1010'
         match  = re.search(r'.* sw .*,.*,.*',str(l))
-        argsls = m atch.group().split()
+        argsls = match.group().split()
         #TODO: conver to binarycode and calculate...
         pc += 1
         line_counter+=1
@@ -135,11 +135,11 @@ for l in fn:
         line_counter+=1
         exit()
     else:
-        return 'miniature: %s : command not found...' % l
+        return "miniature: %s : command not found..." % l
 
 """#TODO: getiing all Labels in laines ->Done.
         Ignore Comments 
         Directive Instructions : .Space and .fill
         Hanlde Errors in Instructions and invalid instruction,Labels and offsets"""
-
-
+name='ali'
+'slm %s' % name
