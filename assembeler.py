@@ -141,5 +141,3 @@ for l in fn:
         Ignore Comments 
         Directive Instructions : .Space and .fill
         Hanlde Errors in Instructions and invalid instruction,Labels and offsets"""
-name='ali'
-'slm %s' % name
