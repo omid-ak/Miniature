@@ -3,31 +3,12 @@ this ia a assembeller known as Miniature.
 It's Instructions has 3 kinds of format: R type, I type and J type
 """
 
-
-# class R_type:
-#     def __init__(opcode, rs, rt, rd, shamat, funcode):
-#         self.operation_code = opcode                        #6bits
-#         self.register_source_1_address = rs                 #5bits
-#         self.register_source_2_address = rt                 #5bits
-#         self.register_destination_address = rd              #5bits
-#         self.shift_ammount = shamat #for shift instructions #6bits
-#         pass
-# class I_type(R_type):
-#     def __init__(opcode, rs, rt, immediate):
-#         self.operation_code = opcode                        #
-#         self.register_source_1_address = rs                 #
-#         self.register_source_2_address = rt                 #
-#         self.Immediate = immediate                          #
-#         pass
-# class J_type(R_type):
-#     def __init__(opcode,address):
-#         self.operation_code = opcode                        #
-#         self.ADDRESS = address                              #
-#         pass
 import re
-# import os.system('command')
-file_name = input('Enter the filename.asm\n')
-fn = open(file_name,'r').readlines()
+
+I_file_name = input('Enter the path and name of Input file in form of : filename.as\n')
+O_file_name = input('Enter the path and name of Output file in form of : program.mc\n')
+fn = open(I_file_name, 'r')
+fw = open(O_file_name, 'a')
 pc = 0
 line_counter = 0
 command_list = ['add', 'sub', 'slt', 'or', 'nand', 'addi', 'ori', ' slti', 'lui', 'lw', 'sw', 'beq', 'jalr', 'j', '.space', '.fill']
@@ -55,10 +36,10 @@ def Convertor_to_binary(number):
     return res
 ############## a function to convert decimal numbers to Hexadecimal #########################
 def Convert_to_Hexa(number):
-    res = hex(int(number)).lstrip('0x')
+    res = hex(int(number))
     return res
-
-for l in fn:
+file_ls = fn.read().splitlines()
+for l in file_ls:
 
 #################### R Type Instructions ############################
     if 'add' in l:
@@ -73,6 +54,8 @@ for l in fn:
         binary_code_address_0 = R_Instruction(rd_0, rt_0, rs_0, opcode_0)
         decima_code_address_0 = int(binary_code_address_0,2)
         hexa_code_address_0   = Convert_to_Hexa(decima_code_address_0)
+        result_str_0 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_0, decima_code_address_0, hexa_code_address_0)
+        fw.write(result_str_0)
         pc += 1
         line_counter += 1
     elif 'sub' in l:
@@ -87,6 +70,8 @@ for l in fn:
         binary_code_address_1 = R_Instruction(rd_1, rt_1, rs_1, opcode_1)
         decima_code_address_1 = int(binary_code_address_1, 2)
         hexa_code_address_1 = Convert_to_Hexa(decima_code_address_1)
+        result_str_1 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_1, decima_code_address_1, hexa_code_address_1)
+        fw.write(result_str_1)
         pc += 1
         line_counter += 1
     elif 'slt' in l:
@@ -101,6 +86,8 @@ for l in fn:
         binary_code_address_2 = R_Instruction(rd_2, rt_2, rs_2, opcode_2)
         decima_code_address_2 = int(binary_code_address_2, 2)
         hexa_code_address_2   = Convert_to_Hexa(decima_code_address_2)
+        result_str_2 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_2, decima_code_address_2, hexa_code_address_2)
+        fw.write(result_str_2)
         pc += 1
         line_counter += 1
     elif 'or' in l:
@@ -115,6 +102,8 @@ for l in fn:
         binary_code_address_3 = R_Instruction(rd_3, rt_3, rs_3, opcode_3)
         decima_code_address_3 = int(binary_code_address_3, 2)
         hexa_code_address_3 = Convert_to_Hexa(decima_code_address_3)
+        result_str_3 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_3, decima_code_address_3, hexa_code_address_3)
+        fw.write(result_str_3)
         pc += 1
         line_counter += 1
     elif 'nand' in l:
@@ -129,6 +118,8 @@ for l in fn:
         binary_code_address_4 = R_Instruction(rd_4, rt_4, rs_4, opcode_4)
         decima_code_address_4 = int(binary_code_address_4, 2)
         hexa_code_address_4 = Convert_to_Hexa(decima_code_address_4)
+        result_str_4 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_4, decima_code_address_4, hexa_code_address_4)
+        fw.write(result_str_4)
         pc += 1
         line_counter += 1
 ####################### I Type Instructions ############################
@@ -144,6 +135,8 @@ for l in fn:
         binary_code_address_5 = I_Instruction(imm_5, rt_5, rs_5, opcode_5)
         decima_code_address_5 = int(binary_code_address_5, 2)
         hexa_code_address_5   = Convert_to_Hexa(decima_code_address_5)
+        result_str_5 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_5, decima_code_address_5, hexa_code_address_5)
+        fw.write(result_str_5)
         pc += 1
         line_counter += 1
     elif 'slti' in l:
@@ -158,8 +151,10 @@ for l in fn:
         binary_code_address_6 = I_Instruction(imm_6, rt_6, rs_6, opcode_6)
         decima_code_address_6 = int(binary_code_address_6, 2)
         hexa_code_address_6 = Convert_to_Hexa(decima_code_address_6)
+        result_str_6 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_6, decima_code_address_6, hexa_code_address_6)
+        fw.write(result_str_6)
         pc += 1
-        line_counter+=1
+        line_counter += 1
     elif 'ori' in l:
         opcode_7 = '0111'
         match_7  = re.search(r'.* ori .*,.*,.*', str(l))
@@ -172,6 +167,8 @@ for l in fn:
         binary_code_address_7 = I_Instruction(imm_7, rt_7, rs_7, opcode_7)
         decima_code_address_7 = int(binary_code_address_7, 2)
         hexa_code_address_7 = Convert_to_Hexa(decima_code_address_7)
+        result_str_7 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_7, decima_code_address_7, hexa_code_address_7)
+        fw.write(result_str_7)
         pc += 1
         line_counter += 1
     elif 'lui' in l:
@@ -186,6 +183,8 @@ for l in fn:
         binary_code_address_8 = I_Instruction(imm_8, rt_8, rs_8, opcode_8)
         decima_code_address_8 = int(binary_code_address_8, 2)
         hexa_code_address_8 = Convert_to_Hexa(decima_code_address_8)
+        result_str_8 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_8, decima_code_address_8, hexa_code_address_8)
+        fw.write(result_str_8)
         pc += 1
         line_counter += 1
     elif 'lw' in l:
@@ -200,6 +199,9 @@ for l in fn:
         binary_code_address_9 = I_Instruction(offset_9, rt_9, rs_9,opcode_9)
         decima_code_address_9 = int(binary_code_address_9, 2)
         hexa_code_address_9 = Convert_to_Hexa(decima_code_address_9)
+        result_str_9 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (
+        binary_code_address_9, decima_code_address_9, hexa_code_address_9)
+        fw.write(result_str_9)
         pc += 1
         line_counter += 1
     elif 'sw' in l:
@@ -214,6 +216,8 @@ for l in fn:
         binary_code_address_10 = I_Instruction(offset_10, rt_10, rs_10, opcode_10)
         decima_code_address_10 = int(binary_code_address_10, 2)
         hexa_code_address_10   = Convert_to_Hexa(decima_code_address_10)
+        result_str_10 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_10, decima_code_address_10, hexa_code_address_10)
+        fw.write(result_str_10)
         pc += 1
         line_counter += 1
     elif 'beq' in l:
@@ -228,19 +232,23 @@ for l in fn:
         binary_code_address_11 = I_Instruction(offset_11, rt_11, rs_11, opcode_11)
         decima_code_address_11 = int(binary_code_address_11, 2)
         hexa_code_address_11   = Convert_to_Hexa(decima_code_address_11)
+        result_str_11 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_11, decima_code_address_11, hexa_code_address_11)
+        fw.write(result_str_11)
         pc += 1
         line_counter += 1
-    elif 'jalr' in l:           #TODO: what about offset ?? :\
+    elif 'jalr' in l:
         opcode_12 = '1100'
-        match_12  = re.search(r'.* jalr .*,.*,.*', str(l))
+        match_12  = re.search(r'.* jalr .*,.*', str(l))
         argsls_12 = match_12.group().split()
         Label_list.append(argsls_12[0])
         rt_12 = Convertor_to_binary(int(argsls_12[2][0]))
         rs_12 = Convertor_to_binary(int(argsls_12[2][1]))
-        offset_12 = Convertor_to_binary(int(argsls_12[2][2]))
+        offset_12 = ''
         binary_code_address_12 = I_Instruction(offset_12, rt_12, rs_12, opcode_12)
         decima_code_address_12 = int(binary_code_address_12, 2)
         hexa_code_address_12 = Convert_to_Hexa(decima_code_address_12)
+        result_str_12 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_12, decima_code_address_12, hexa_code_address_12)
+        fw.write(result_str_12)
         pc += 1
         line_counter += 1
 ############### J Type Instructions ##############################
@@ -261,6 +269,8 @@ for l in fn:
         binary_code_address_14 = opcode_14 + A.zfill(28)
         decima_code_address_14 = int(binary_code_address_14, 2)
         hexa_code_address_14   = Convert_to_Hexa(decima_code_address_14)
+        result_str_14 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_14, decima_code_address_14, hexa_code_address_14)
+        fw.write(result_str_14)
         pc += 1
         line_counter+=1
         exit(0)
@@ -271,6 +281,10 @@ for l in fn:
         binary_code_address_15 = Convertor_to_binary(int(argsls_15[2]))
         decima_code_address_15 = int(binary_code_address_15,2)
         hexa_code_address_15   = Convert_to_Hexa(decima_code_address_15)
+        result_str_15 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_15, decima_code_address_15, hexa_code_address_15)
+        fw.write(result_str_15)
+        pc += 1
+        line_counter += 1
     elif '.space' in  l:
         match_16 = re.search(r'.* .space .*', str(l))
         argsls_16 = match_16.group().split()
@@ -278,6 +292,10 @@ for l in fn:
         binary_code_address_16 = z.zfill(int(argsls_16[2]))
         decima_code_address_16 = int(binary_code_address_16, 2)
         hexa_code_address_16   = Convert_to_Hexa(decima_code_address_16)
+        result_str_16 = "BINARY : %s  DECIMAL : %s  HEXADECIMAL : %s \n" % (binary_code_address_16, decima_code_address_16, hexa_code_address_16)
+        fw.write(result_str_16)
+        pc += 1
+        line_counter += 1
 ############## Denied Instructions #################################
     else:
         line_counter += 1
@@ -286,21 +304,10 @@ for l in fn:
         if wrong_command_ls[1] not in command_list:
             print("an error has occurred in line %d" % line_counter)
             print("miniature: %s : command not found : %s" % (l, wrong_command_ls[1]))
-    exit(1)
+        exit(1)
 
-
+fw.close()
 #############################################################################################
 
-
-#TODO: getiing all Labels in lainopcodees ->Done.
-#TODO: Ignore Comments --> Done
-#TODO: Directive Instructions : .Space and .fill --> Done
 #TODO: Hanlde Errors in Instructions and invalid instruction,Labels and offsets
-#TODO: resolve an isuue in line 189 --> Done
-#TODO: calculation hexa form of addresses --> Done
-#TODO: writting results into file
-
-
-
-
-
+#TODO: Jump to lines by line_counter
