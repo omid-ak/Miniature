@@ -1,0 +1,9 @@
+-    sw 2,3,Lb1
+-    sub 2,2,3
+-    lw 1,2,Lb2
+Lb1 .fill 2
+-    ori 5,6,0
+-    beq 5,2,L1
+Lb2 .fill 3
+-    nand 2,2,3
+-    addi 4,4,1
